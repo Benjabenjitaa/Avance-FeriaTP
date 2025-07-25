@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Técnico en Programación – LTP Patricio Aylwin Azócar</title>
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <style>
+    /* Estilos globales */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    header {
+      background-color: #d8dde1;
+      color: rgb(56, 48, 48);
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header img.logo {
+      height: auto;
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .logofooter {
+      max-width: 100%;
+      height: auto;
+    }
+
+    header h1 {
+      font-size: 2em;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: #003366;
+      margin-bottom: 10px;
+    }
+
+    .centrado-titulo {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      flex: 1 1 300px;
+      padding: 20px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      height: 180px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 10px;
+    }
+
+    .salidas-laborales-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .salida-item {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1 1 280px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .intro-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    .intro-text, .formulario {
+      flex: 1 1 45%;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .centrartexto1{
+    text-align: justify;
+    }
+    form label, form input, form textarea, form button {
+      width: 100%;
+      display: block;
+    }
+
+    form input, form textarea {
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    form button {
+      background-color: #003366;
+      color: white;
+      padding: 10px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .seccion-azul {
+      position: relative;
+      background-color: #003366;
+      background-image: url("https://images.pexels.com/photos/3861440/pexels-photo-3861440.jpeg");
+      background-size: cover;
+      background-position: center;
+      margin-top: 40px;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      border-radius: 8px;
+    }
+
+    .seccion-azul::before {
+      content: "";
+      position: absolute;
+      background-color: rgba(0, 51, 102, 0.85);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+    }
+
+    .seccion-azul .overlay {
+      position: relative;
+      color: white;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .overlay h2 {
+      color: white;
+    }
+
+    .card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 768px) {
+      .intro-form, .grid, .salidas-laborales-container {
+        flex-direction: column;
+      }
+
+      .intro-text, .formulario {
+        flex: 1 1 100%;
+      }
+
+      .centrado-titulo {
+        font-size: 1.5em;
+      }
+    }
+
+    @media(max-width: 480px) {
+      header h1 {
+        font-size: 1.5em;
+      }
+
+      header p {
+        font-size: 1em;
+      }
+
+      .card img {
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="images/logo.png" alt="Logo del liceo" class="logo" />
+    <h1>Técnico en Programación</h1>
+    <p>LICEO TÉCNICO PROFESIONAL PATRICIO AYLWIN AZÓCAR</p>
+  </header>
+
+  <section>
+  <div class="intro-form">
+    <div class="intro-text">
+      <h2>¿De qué trata esta carrera?</h2>
+<p class="centrartexto1">
+La especialidad de Técnico en Programación está orientada a formar estudiantes capaces de enfrentar los desafíos tecnológicos del mundo moderno. A lo largo de la carrera, los estudiantes adquieren conocimientos teóricos y prácticos en el área de la informática, aprendiendo desde los conceptos básicos de la programación hasta el desarrollo de proyectos más complejos como aplicaciones web, móviles y sistemas automatizados.
+</p>
+
+<p class="centrartexto1">
+Durante su formación, los alumnos trabajan con diferentes lenguajes de programación como Python, JavaScript, HTML y CSS, además de utilizar herramientas de diseño y bases de datos. Se promueve el aprendizaje basado en proyectos, lo que permite desarrollar habilidades prácticas y preparar a los estudiantes para situaciones reales del entorno laboral.
+</p>
+
+
+    </div>
+
+    <div class="formulario">
+      <h2>Compañeros y Presentaciones</h2>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 15px;">
+          <h3 style="color: #003366;">Daniel Morales</h3>
+          <p>Tema: Contraseña Segura</p>
+          <a href="Danielmorales/index.html" target="_blank" style="color: #2196F3;">Ver página web</a>
+        </li>
+        <li style="margin-bottom: 15px;">
+          <h3 style="color: #003366;">Ignacio Encina</h3>
+          <p>Tema: Vulnerabilidad</p>
+          <a href="https://ejemplo-maria.com" target="_blank" style="color: #2196F3;">Ver página web</a>
+        </li>
+        <li style="margin-bottom: 15px;">
+          <h3 style="color: #003366;">Valentin Ulloa</h3>
+          <p>Tema: Phishing</p>
+          <a href="https://ejemplo-carlos.com" target="_blank" style="color: #2196F3;">Ver página web</a>
+        </li>
+        <li style="margin-bottom: 15px;">
+          <h3 style="color: #003366;">Lyan Hernandez</h3>
+          <p>Tema: Ransomware</p>
+          <a href="https://ejemplo-fernanda.com" target="_blank" style="color: #2196F3;">Ver página web</a>
+        </li>
+        <li style="margin-bottom: 15px;">
+          <h3 style="color: #003366;">Antonella Fuentes</h3>
+          <p>Tema: Ingeniería Social</p>
+          <a href="https://ejemplo-andres.com" target="_blank" style="color: #2196F3;">Ver página web</a>
+        </li>
+        <li style="margin-bottom: 15px;">
+          <h3 style="color: #003366;">Valentina Cariz</h3>
+          <p>Tema: Redes Inseguras</p>
+          <a href="https://ejemplo-camila.com" target="_blank" style="color: #2196F3;">Ver página web</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+  <section class="seccion-azul">
+    <div class="overlay">
+      <h2>¿Por qué estudiar esta carrera?</h2>
+      <p>
+          La especialidad de Técnico en Programación entrega competencias para enfrentar desafíos tecnológicos del mundo moderno. 
+          Nuestros estudiantes aprenden a crear aplicaciones, diseñar sitios web y resolver problemas con pensamiento lógico. 
+          Es una carrera con alta demanda laboral, ideal para quienes disfrutan la informática, la innovación y los retos.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="centrado-titulo">¿Qué aprenderás?</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg" alt="Programación" />
+        <h3>Lenguajes de programación</h3>
+        <p>Aprenderás Python, JavaScript, HTML, CSS y más.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg" alt="Estudiante" />
+        <h3>Desarrollo Web</h3>
+        <p>Diseñarás sitios web interactivos y funcionales desde cero.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.pexels.com/photos/3861952/pexels-photo-3861952.jpeg" alt="Trabajo en equipo" />
+        <h3>Trabajo en equipo</h3>
+        <p>Participarás en proyectos grupales reales con otros estudiantes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="centrado-titulo">Salidas laborales</h2>
+    <div class="salidas-laborales-container">
+      <div class="salida-item">
+        <h3>Desarrollo de software</h3>
+        <p>Oportunidades para trabajar como desarrollador Front-end o Back-end, creando aplicaciones y sitios web.</p>
+      </div>
+      <div class="salida-item">
+        <h3>Soporte y testing</h3>
+        <p>Roles en soporte técnico informático y testing de software para garantizar calidad y funcionamiento.</p>
+      </div>
+      <div class="salida-item">
+        <h3>Emprendimiento digital</h3>
+        <p>Capacitación para ser freelancer o iniciar proyectos digitales propios con alta demanda en el mercado.</p>
+      </div>
+    </div>
+  </section>
+
+ <section>
+  <h2 class="centrado-titulo">¿Por qué elegirnos?</h2>
+  <div class="salidas-laborales-container">
+    <div class="salida-item" style="text-align: center;">
+      <div style="font-size: 48px; color: #003366; margin-bottom: 12px;">💻</div>
+      <h3>Formación 100% práctica</h3>
+      <p>Desde el primer año desarrollarás proyectos reales que te preparan para el mundo laboral.</p>
+    </div>
+    <div class="salida-item" style="text-align: center;">
+      <div style="font-size: 48px; color: #003366; margin-bottom: 12px;">👨‍🏫</div>
+      <h3>Docentes especializados</h3>
+      <p>Profesores con experiencia en el área tecnológica, siempre dispuestos a guiar tu aprendizaje.</p>
+    </div>
+    <div class="salida-item" style="text-align: center;">
+      <div style="font-size: 48px; color: #003366; margin-bottom: 12px;">🖥️</div>
+      <h3>Infraestructura tecnológica</h3>
+      <p>Laboratorios de computación equipados con softwares actualizados y herramientas modernas.</p>
+    </div>
+    <div class="salida-item" style="text-align: center;">
+      <div style="font-size: 48px; color: #003366; margin-bottom: 12px;">🤝</div>
+      <h3>Oportunidades de práctica</h3>
+      <p>Acceso a convenios y contactos con empresas para prácticas profesionales.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background: linear-gradient(135deg, #003366, #0073e6); color: white; padding: 50px 20px; text-align: center; border-radius: 15px; margin: 40px auto; max-width: 900px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);">
+  <h2 style="font-size: 2.5em; margin-bottom: 20px;">¡Escanea nuestro código QR!</h2>
+  <p style="font-size: 1.2em; margin-bottom: 30px;">Accede directamente a nuestra encuesta escaneando el siguiente código QR con tu celular.</p>
+  <div style="display: flex; justify-content: center;">
+    <img src="images/codigo.png" alt="Código QR" style="width: 250px; height: 250px; border-radius: 20px; box-shadow: 0 6px 15px rgba(0,0,0,0.3); background: white; padding: 15px;">
+  </div>
+</section>
+
+  <footer style="background-color: #3173b5; color: white; padding: 30px 20px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+    <div style="display: flex; align-items: center; gap: 15px; flex: 1 1 250px;">
+      <img src="images/logofooter.png" alt="Logo LTP Patricio Aylwin Azócar" class="logofooter"/>
+
+    </div>
+
+    <div ;>
+      <h4 style="margin-bottom: 10px;">Contáctanos</h4>
+      <p>Email: <a href="mailto:correo@tudominio.cl" style="color: #aad4ff;">liceo.patricioaylwin@slepgm.cl
+</a></p>
+      <p>Teléfono: <a href="tel:+56912345678" style="color: #aad4ff;">+562 2401 1646
+
+</a></p>
+      <p>Dirección: Sofía Eastman de Hunneus 10411, 8801205 La Granja, Región Metropolitana</p>
+    </div>
+
+    <div style="width: 100%; text-align: center; margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+      &copy; 2025 LTP Patricio Aylwin Azócar – Creado por IV medio B.
+    </div>
+  </footer>
+

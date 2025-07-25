@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8">
+    <title>Contraseñas Seguras</title>
+    <style>
+
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url('images/3fondo.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-attachment: fixed; /* Para que el fondo no se mueva al hacer scroll */
+                text-align: center;
+                padding: 40px;
+                min-height: 100vh;
+            }
+
+
+        .header-box {
+            background-color: #2b1865;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 80px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+
+        h1 {
+            font-size: 2.8em;
+            color: #e4e4e4;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            color: #afaaaa;
+            margin: 10px 0 0 0;
+        }
+
+        .password-btn {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .password-btn:hover {
+            background-color: #2980b9;
+        }
+
+        #question {
+            font-size: 3em;
+            margin-top: 35px;
+            color: rgb(17, 17, 18);
+        }
+
+        #explanation {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #dfe6e9;
+            border-radius: 10px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            display: none;
+            color: #142023;
+        }
+
+        #nextBtn {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .question {
+            margin-top: 50px;
+            font-size: 1.2em;
+            color: #2c3e50;
+        }
+
+        .verifier-box {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        #feedback {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logos fijos -->
+    <div style="position: fixed; top: 10px; left: 10px;">
+        <img src="c:\Users\Docente\Desktop\nvproyec\Logotipo-SLEP-Gabriela-Mistral.png" alt="Logo Izquierdo" style="height: 60px;">
+        
+    </div>
+    <div style="position: fixed; top: 10px; right: 10px;">
+        <img src="c:\Users\Docente\Desktop\nvproyec\unnamed.jpg" alt="Logo Derecho" style="height: 60px;">
+    </div>
+
+    <!-- Encabezado -->
+    <div class="header-box">
+        <h1>Contraseñas Seguras</h1>
+        <h2>Nivel 4</h2>
+    </div>
+
+    <!-- Pregunta y opciones -->
+    <div id="question">Cargando pregunta...</div>
+    <div id="options"></div>
+
+    <!-- Explicación y botón -->
+    <div id="explanation"></div>
+    <button id="nextBtn" onclick="loadNewQuestion()">Siguiente</button>
+
+    <!-- Verificador de contraseña -->
+    <div id="verifierContainer" style="display: none;">
+        <h3 style="color:white;">¡Excelente! Ahora crea tu propia contraseña segura</h3>
+        <div class="verifier-box">
+            <input type="text" id="userPassword" placeholder="Escribe tu contraseña aquí">
+            <div id="feedback"></div>
+        </div>
+    </div>
+
+    <!-- Script principal -->
+    <script>
+        const personalWords = ["carlos", "maria", "1998", "123", "nombre", "apellido", "fecha", "admin", "usuario", "amor", "juan", "laura", "pepe"];
+
+        let currentQuestionIndex = 0;
+        let shuffledQuestions = [];
+
+        const questions = [
+            {
+                text: "¿Cuál de estas contraseñas es más segura?",
+                options: [
+                    { pw: "Carlos1998", isSecure: false, isCorrect: false, reason: "Contiene un nombre y una fecha de nacimiento. Es fácil de adivinar." },
+                    { pw: "Maria123", isSecure: false, isCorrect: false, reason: "Nombre común con números simples. Muy predecible." },
+                    { pw: "T9&k@1LpZ!", isSecure: true, isCorrect: true, reason: "Buena mezcla de letras, números y símbolos, sin datos personales." }
+                ]
+            },
+            {
+                text: "¿Qué contraseña deberías evitar?",
+                options: [
+                    { pw: "Juan2000", isSecure: false, isCorrect: false, reason: "Nombre y año: muy débil y fácil de adivinar." },
+                    { pw: "aB!9eP#x", isSecure: true, isCorrect: false, reason: "Es segura y bien construida." },
+                    { pw: "123456", isSecure: false, isCorrect: true, reason: "Es una de las contraseñas más usadas y más inseguras del mundo." }
+                ]
+            },
+            {
+                text: "Selecciona la contraseña más débil:",
+                options: [
+                    { pw: "Pepe1234", isSecure: false, isCorrect: false, reason: "Es débil, pero no tanto como una palabra clave obvia." },
+                    { pw: "Z@9Lp!3r", isSecure: true, isCorrect: false, reason: "Es segura y bien estructurada." },
+                    { pw: "Contraseña", isSecure: false, isCorrect: true, reason: "Es la más débil por ser demasiado obvia y común." }
+                ]
+            },
+            {
+                text: "¿Qué contraseña cumple con buenas prácticas?",
+                options: [
+                    { pw: "Laura2021", isSecure: false, isCorrect: false, reason: "Nombre + fecha. Muy fácil de adivinar." },
+                    { pw: "xF7#r!Dq8", isSecure: true, isCorrect: true, reason: "Tiene buena longitud, complejidad y no incluye datos personales." },
+                    { pw: "admin123", isSecure: false, isCorrect: false, reason: "Una de las más comunes y débiles." }
+                ]
+            },
+            {
+                text: "¿Cuál de estas deberías evitar?",
+                options: [
+                    { pw: "Amor123", isSecure: false, isCorrect: false, reason: "Demasiado predecible y basada en sentimientos comunes." },
+                    { pw: "M#8vL!eQ", isSecure: true, isCorrect: false, reason: "Contraseña segura y aleatoria." },
+                    { pw: "password", isSecure: false, isCorrect: true, reason: "Literalmente 'contraseña'. Es la más obvia de todas." }
+                ]
+            },
+            {
+                text: "¿Aprendiste a crear una contraseña segura?",
+                options: [] // Solo verificador interactivo
+            }
+        ];
+
+        function shuffleArray(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+
+        function loadNewQuestion() {
+            const questionDiv = document.getElementById("question");
+            const optionsDiv = document.getElementById("options");
+            const explanationDiv = document.getElementById("explanation");
+            const nextBtn = document.getElementById("nextBtn");
+            const verifierContainer = document.getElementById("verifierContainer");
+
+            if (currentQuestionIndex >= shuffledQuestions.length) return;
+
+            const q = shuffledQuestions[currentQuestionIndex];
+            questionDiv.textContent = q.text;
+            explanationDiv.style.display = "none";
+            nextBtn.style.display = "none";
+            verifierContainer.style.display = "none";
+            optionsDiv.innerHTML = "";
+
+            if (q.options.length === 0) {
+                verifierContainer.style.display = "block";
+            } else {
+                const shuffledOptions = shuffleArray(q.options);
+                shuffledOptions.forEach(option => {
+                    const btn = document.createElement("button");
+                    btn.className = "password-btn";
+                    btn.textContent = option.pw;
+                    btn.onclick = () => {
+                        explanationDiv.innerHTML = `<strong>${option.pw}</strong><br>${option.isCorrect ? "✅ ¡Correcto!" : "❌ Incorrecto"}<br><em>${option.reason}</em>`;
+                        explanationDiv.style.display = "block";
+
+                        if (option.isCorrect) {
+                            setTimeout(() => {
+                                loadNewQuestion();
+                            }, 1500);
+                        } else {
+                            nextBtn.style.display = "inline-block";
+                        }
+                    };
+                    optionsDiv.appendChild(btn);
+                });
+            }
+
+            currentQuestionIndex++;
+        }
+
+        function isPasswordSecure(pw) {
+            const lowerPw = pw.toLowerCase();
+            const hasUpper = /[A-Z]/.test(pw);
+            const hasLower = /[a-z]/.test(pw);
+            const hasNumber = /[0-9]/.test(pw);
+            const hasSymbol = /[\W_]/.test(pw);
+            const longEnough = pw.length >= 8;
+            const containsPersonalData = personalWords.some(word => lowerPw.includes(word));
+
+            if (!longEnough) return "❌ La contraseña debe tener al menos 8 caracteres.";
+            if (!hasUpper) return "❌ Debe incluir al menos una letra mayúscula.";
+            if (!hasLower) return "❌ Debe incluir al menos una letra minúscula.";
+            if (!hasNumber) return "❌ Debe incluir al menos un número.";
+            if (!hasSymbol) return "❌ Debe incluir al menos un símbolo o carácter especial.";
+            if (containsPersonalData) return "❌ No uses nombres, fechas ni datos personales.";
+
+            return "✅ ¡Tu contraseña es segura!";
+        }
+
+        document.getElementById("userPassword").addEventListener("input", function () {
+            const result = isPasswordSecure(this.value);
+            const feedback = document.getElementById("feedback");
+            feedback.textContent = result;
+            feedback.style.color = result.startsWith("✅") ? "green" : "red";
+        });
+
+        window.onload = function () {
+            shuffledQuestions = [...questions];
+            shuffledQuestions = shuffleArray(shuffledQuestions.slice(0, -1));
+            shuffledQuestions.push(questions[questions.length - 1]);
+            currentQuestionIndex = 0;
+            loadNewQuestion();
+        };
+
+        document.getElementById("nextBtn").onclick = loadNewQuestion;
+    </script>
+
+<!-- Sección QR -->
+<div style="margin-top: 60px; background-color: #ffffffcc; padding: 30px; border-radius: 12px; max-width: 500px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+    <h3 style="color: #2c3e50;">📱 Accede desde tu celular</h3>
+    <p style="color: #555;">Escanea este código QR para abrir esta actividad directamente en tu teléfono.</p>
+    <img src="images/qrcode.png" alt="Código QR" style="height: 200px; margin-top: 15px;">
+</div>
+
+
+    <!-- Footer -->
+    <footer style="margin-top: 50px; padding: 20px; background-color: #ffffffcc; border-radius: 10px; color: #2c3e50;">
+        <p>&copy; 2025 Liceo Técnico Profesional Patricio Aylwin Azocar. Todos los derechos reservados.</p>
+        <ul style="list-style: none; padding: 0; margin-top: 10px;">
+            <li><strong>Nombre:</strong> Liceo Técnico Profesional Patricio Aylwin Azocar</li>
+            <li><strong>Dirección:</strong> Av. Santa Rosa 9366, La Granja, Región Metropolitana, Chile</li>
+            <li><strong>Teléfono:</strong> +56 2 2543 1211</li>
+            <li><strong>Directora:</strong> Sra. Ximena Llantén Bravo</li>
+        </ul>
+    </footer>
+</body>
+</html>
+
